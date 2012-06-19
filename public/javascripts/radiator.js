@@ -2,6 +2,7 @@
   $(function() {
     var failure = new Audio("/audio/lasier.mp3");
     var success = new Audio("/audio/woohoo.mp3");
+    var deployed = new Audio("/audio/deployed.mp3");
 
     var startBuild = function(build) {
       console.log("Build started: " + build.buildFullName);
@@ -21,7 +22,12 @@
       }
       else if(build.buildResult == 'success') {
         buildDiv.removeClass("red").addClass("green");
-        success.play();
+        if(build.buildTypeId == 'bt4') {
+          deployed.play();
+        }
+        else {
+          success.play();
+        }
       }
     };
 
